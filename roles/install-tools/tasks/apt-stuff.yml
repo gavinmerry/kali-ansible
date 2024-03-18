@@ -30,6 +30,9 @@
       - tnscmd10g
       - wkhtmltopdf
       - xsel
+      - wine64
+      - ipcalc
+      - terminator
     state: latest
   become: true
   become_method: sudo
