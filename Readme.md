@@ -6,11 +6,8 @@ Based on Ippsec's parrot build [script](https://github.com/IppSec/parrot-build) 
 
 # Instructions
 * Start with a fresh installation of Kali Linux, this is made specifically for an installation using Gnome as it imports some of my keybindings using dconf. If not using Gnome, comment out the line including gnome-shell.yml in `roles/customize-terminal/tasks/main.yml`.
-* Install Ansible (pip3 install ansible)
-* Clone and enter the repo (git clone)
-* ansible-galaxy install -r requirements.yml
-* Make sure we have a sudo token (sudo whoami)
-* ansible-playbook main.yml
+* clone repo and `cd` into it.
+* run `bash run.sh`
 
 # What this script does
 * Various tasks for installing tools from apt, pipx, gem, cargo, go, as well as pulling releases from and cloning github repos
