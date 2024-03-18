@@ -9,3 +9,5 @@
     - { name: 'crackmapexec', url: 'git+https://github.com/byt3bl33d3r/CrackMapExec.git' }
     - { name: 'certipy-ad', url: 'git+https://github.com/ly4k/Certipy.git' }
     - { name: 'autorecon', url: 'git+https://github.com/Tib3rius/AutoRecon.git' }
+    - { name: 'autorecon', url: 'git+https://github.com/Tib3rius/AutoRecon.git' }
+    - { name: 'mitm6', url: 'git+https://github.com/dirkjanm/mitm6.git' }
