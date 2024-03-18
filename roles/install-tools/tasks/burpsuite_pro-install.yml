@@ -1,0 +1,28 @@
+---
+- name: Create temporary build directory
+  ansible.builtin.tempfile:
+    state: directory
+  register: build_dir
+
+- name: "Copying bash script to download burp"
+  copy:
+    src: "files/download_burpsuite_pro.sh"
+    dest: "{{ build_dir.path }}/download_burpsuite_pro.sh"
+    owner: root
+    group: root
+    mode: 0755
+  become: true
+  become_method: sudo
+
+- name: "Downloading github releases"
+  shell: "bash {{ build_dir.path }}/download_burpsuite_pro.sh"
+  async: 0
+  poll: 0
+  become: true
+  become_method: sudo
+
+- name: Remove temporary build directory
+  ansible.builtin.file:
+    path: "{{ build_dir.path }}"
+    state: absent
+  when: build_dir.path is defined
