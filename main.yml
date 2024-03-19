@@ -2,12 +2,10 @@
 - name: "Customizing Kali"
   hosts: localhost
   connection: local
-  set_fact:
-        license_key: "{{ lookup('file', '/mnt/hgfs/Lincense_files/Burp_Suite_Professional_License.txt') }}"
   vars:
     burpsuite_user: kali
     burpsuite_edition: pro
-    burpsuite_pro_license_key: "{{ license_key }}"
+    burpsuite_pro_license_key: "{{ lookup('file', '/mnt/hgfs/Lincense_files/Burp_Suite_Professional_License.txt') }}"
   roles:
     - role: "roles/install-tools"
     - role: "roles/configure-tmux"
@@ -27,7 +25,6 @@
             - esbenp.prettier-vscode
             - ms-vscode.powershell
             - ms-vscode.cpptools
-
               # - role: gantsign.oh-my-zsh
               #   users: 
               #     - username: "{{ ansible_user_id }}"
