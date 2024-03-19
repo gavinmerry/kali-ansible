@@ -35,7 +35,7 @@
       y
       
       y
-  no_log: true
+  #no_log: true
 
 - name: "Read License key file"
   set_fact:
