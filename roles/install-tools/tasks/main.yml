@@ -1,5 +1,6 @@
 ---
 - include_tasks: burpsuite_pro-install.yml
+- include_tasks: install_nessus.yml
 - include_tasks: apt-stuff.yml
 - include_tasks: go-tools.yml
 - include_tasks: github-repos.yml

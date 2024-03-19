@@ -1,0 +1,50 @@
+---
+- name: Install Tenable Nessus
+  hosts: localhost
+  tags: [nessus]
+  tasks:
+    - name: Fetch latest Nessus version URL
+      uri:
+        url: "https://www.tenable.com/downloads/nessus"
+        return_content: yes
+      register: nessus_download_page
+
+    - name: Extract download URL
+      set_fact:
+        nessus_download_url: "{{ nessus_download_page.content | regex_search('(?<=href=").+?nessus-[0-9\.]+-debian10_amd64.deb(?=")') }}"
+
+    - name: Download Nessus installer
+      get_url:
+        url: "{{ nessus_download_url }}"
+        dest: "/tmp/nessus_installer.deb"
+
+    - name: Install Nessus
+      become: true
+      become_method: sudo
+      command: dpkg -i /tmp/nessus_installer.deb
+
+    - name: Start Nessus Daemon
+      become: true
+      become_method: sudo
+      shell: /bin/systemctl start nessusd.service
+
+    - name: Add Nessus User
+      become: true
+      become_method: sudo
+      except: 
+        command: /opt/nessus/sbin/nessuscli adduser nessus
+        responses:
+          "Login password:": "nessus\n"
+          "Login password (again):": "nessus\n"
+          "Do you want this user to be a Nessus 'system administrator' user (can upload plugins, etc.)? (y/n) [n]:": "y\n"
+          "Enter the rules for this user, and enter a BLANK LINE once you are done :": "\n"
+          "Is that ok? (y/n) [n]:": "y\n"
+
+    - name: Read License key file
+      set_fact:
+        license_key: "{{ lookup('file', '/mnt/hgfs/License_files/Nessus_license.txt')}}"
+
+    - name: License Nessus
+      become: true
+      become_method: sudo
+      shell: /opt/nessus/sbin/nessuscli fetch --register "{{ license_key }}"
