@@ -27,15 +27,15 @@
 - name: "Add Nessus User"
   become: true
   become_method: sudo
-  expect:
-    command: sudo /opt/nessus/sbin/nessuscli adduser nessus
-    responses:
-      "Login password : ": "nessus"
-      "Login password \(again\) : ": "nessus"
-      "Do you want this user to be a Nessus 'system administrator' user \(can upload plugins, etc.\)\? \(y/n\) \[n\]: ": "y"
-      "Enter the rules for this user, and enter a BLANK LINE once you are done: " "\n"
-      "Is that ok\? \(y/n\) \[n\]: ": "y"
-  #no_log: true
+  shell: 'sudo /opt/nessus/sbin/nessuscli adduser nessus'
+  args:
+    stdin: |
+      nessus
+      nessus
+      y
+      
+      y
+  no_log: true
 
 - name: "Read License key file"
   set_fact:
