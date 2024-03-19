@@ -46,3 +46,4 @@
       become: true
       become_method: sudo
       shell: /opt/nessus/sbin/nessuscli fetch --register "{{ license_key }}"
+
