@@ -6,6 +6,7 @@ Based on Ippsec's parrot build [script](https://github.com/IppSec/parrot-build) 
 
 # Instructions
 * Start with a fresh installation of Kali Linux, this is made specifically for an installation using Gnome as it imports some of my keybindings using dconf. If not using Gnome, comment out the line including gnome-shell.yml in `roles/customize-terminal/tasks/main.yml`.
+* Note, for Nessus and BurpSuite Pro, I have my own license keys which are referenced in the playbook to a specific path I use. Please update this to your own path where you store your license keys.
 * clone repo and `cd` into it.
 * run `bash run.sh`
 
