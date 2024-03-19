@@ -11,7 +11,7 @@
 
     - name: Extract download URL
       set_fact:
-        nessus_download_url: "https://www.tenable.com/downloads/api/v2/pages/nessus/files/{{ nessus_download_page.content | regex_search('Nessus-[0-9.]+-debian[0-9]+_amd64\.deb'), limit=1 }}"
+        nessus_download_url: "https://www.tenable.com/downloads/api/v2/pages/nessus/files/{{ nessus_download_page.content | regex_search('Nessus-[0-9.]+-debian[0-9]+_amd64.deb'), limit=1 }}"
 
     - name: Download Nessus installer
       get_url:
