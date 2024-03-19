@@ -12,15 +12,63 @@
 - name: "Installing Packages"
   package:
     name:
+      - awscli
+      - bloodhound
+      - bloodhound.py
+      - certipy-ad
+      - cmake
+      - covenant-kbx
+      - docker.io
+      - docker-compose
+      - evil-winrm
+      - eyewitness
+      - gdb
+      - gdbserver
+      - ghidra
+      - gobuster
+      - golang
       - jq
+      - keepassxc
+      - libreoffice
+      - libssl-dev
+      - nbtscan-unixwiz
+      - ncat
+      - neo4j
+      - nuclei
+      - parallel
+      - payloadsallthethings
+      - peass
+      - pipenv
       - pipx
+      - python3-poetry
+      - python3-pwntools
+      - python3-unicorn
+      - rlwrap
+      - ropper
+      - seclists
+      - testssl.sh
+      - wireguard
+      - xclip
+      - xsel
+      - libpcap-dev
+      - asleap
+      - beef-xss
+      - bettercap
+      - dsniff
+      - hcxdumptool
+      - hcxtools
+      - hostapd
+      - hostapd-wpe
+      - isc-dhcp-server
+      - lighttpd
+      - mdk4
+      - sslstrip
       - ntpdate
       - flameshot
       - exiftool
-      - spice-vdagent  
+      - spice-vdagent 
       - golang-go
       - feroxbuster
-      - neo4j
       - rsyslog
       - ufw
       - dconf-cli
@@ -29,7 +77,6 @@
       - oscanner
       - tnscmd10g
       - wkhtmltopdf
-      - xsel
       - wine64
       - ipcalc
       - terminator

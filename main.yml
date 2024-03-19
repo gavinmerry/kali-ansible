@@ -2,13 +2,21 @@
 - name: "Customizing Kali"
   hosts: localhost
   connection: local
+  set_fact:
+        license_key: "{{ lookup('file', '/mnt/hgfs/Lincense_files/Burp_Suite_Professional_License.txt') }}"
+  vars:
+    burpsuite_user: kali
+    burpsuite_edition: pro
+    burpsuite_pro_license_key: "{{ license_key }}"
   roles:
     - role: "roles/install-tools"
     - role: "roles/configure-tmux"
     - role: "roles/customize-terminal"
     - role: "roles/customize-browser"
     - role: "roles/configure-logging"
+    - role: chaosmail.sublime-text
     - role: gantsign.visual-studio-code
+    - role: iesplin.burp_suite
       users:
         - username: "{{ ansible_user_id }}" 
           visual_studio_code_extensions:
@@ -16,6 +24,10 @@
             - ms-python.python
             - DEVSENSE.phptools-vscode
             - snyk-security.snyk-vulnerability-scanner
+            - esbenp.prettier-vscode
+            - ms-vscode.powershell
+            - ms-vscode.cpptools
+
               # - role: gantsign.oh-my-zsh
               #   users: 
               #     - username: "{{ ansible_user_id }}"
