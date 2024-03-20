@@ -1,7 +1,0 @@
----
-- name: "Downloading & licensing burpsuite pro"
-  shell: "bash {{ role_path }}/files/download_burpsuite_pro.sh"
-  async: 0
-  poll: 0
-  become: true
-  become_method: sudo

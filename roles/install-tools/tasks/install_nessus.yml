@@ -24,6 +24,13 @@
   become_method: sudo
   shell: /bin/systemctl start nessusd.service
 
+- name: "Check if Nessus user already exists"
+  become: true
+  become_method: sudo
+  command: sudo /opt/nessus/sbin/nessuscli lsuser
+  register: nessus_user_info
+  ignore_errors: true
+
 - name: "Add Nessus User"
   become: true
   become_method: sudo
@@ -35,14 +42,22 @@
       y
       
       y
-  #no_log: true
+  when: "'nessus' not in nessus_user_info.stdout"
+
+- name: "Check if already licensed"
+  become: true
+  become_method: sudo
+  command: sudo /opt/nessus/sbin/nessuscli fetch --check
+  register: license_info
+  ignore_errors: true
 
 - name: "Read License key file"
   set_fact:
     license_key: "{{ lookup('file', '/mnt/hgfs/License_files/Nessus_license.txt')}}"
+  when: "'Updates are configured properly' not in license_info.stdout"
 
 - name: "License Nessus"
   become: true
   become_method: sudo
   shell: /opt/nessus/sbin/nessuscli fetch --register "{{ license_key }}"
-
+  when: "'Updates are configured properly' not in license_info.stdout"

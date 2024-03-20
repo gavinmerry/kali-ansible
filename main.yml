@@ -5,7 +5,7 @@
   vars:
     burpsuite_user: kali
     burpsuite_edition: pro
-    burpsuite_pro_license_key: "{{ lookup('file', '/mnt/hgfs/Lincense_files/Burp_Suite_Professional_License.txt') }}"
+    burpsuite_pro_license_key: "{{ lookup('file', '/mnt/hgfs/License_files/Burp_Suite_Professional_License.txt') }}"
   roles:
     - role: "roles/install-tools"
     - role: "roles/configure-tmux"
@@ -13,8 +13,8 @@
     - role: "roles/customize-browser"
     - role: "roles/configure-logging"
     - role: chaosmail.sublime-text
-    - role: gantsign.visual-studio-code
     - role: iesplin.burp_suite
+    - role: gantsign.visual-studio-code
       users:
         - username: "{{ ansible_user_id }}" 
           visual_studio_code_extensions:

@@ -13,7 +13,17 @@ Based on Ippsec's parrot build [script](https://github.com/IppSec/parrot-build) 
 # What this script does
 * Various tasks for installing tools from apt, pipx, gem, cargo, go, as well as pulling releases from and cloning github repos
    * You can modify this to add tools or additional sources as necessary
+* Installs pro tools such as BurpSuite Pro and Nessus. Note, you will need to parse your own license keys.
 * Configures firefox to proxy https traffic with burp suite
 * Configures my zsh and tmux configuration files
 * Configures my gnome shell keybindings via dconf
 * Configures system wide logging
+
+
+# TODO
+
+- Update forked sublime text role to my personal configurations
+- Update the browser customisation to my firefox preferences
+- update the terminal role from gnome to xfce 
+- Update Nessus install Role to move the license key variable to main.yml like Burp
+- Add in kali system config so desktop display, tools bar, app locations etc. are all configured to my personal preferences.
