@@ -79,6 +79,7 @@
       - wine64
       - ipcalc
       - terminator
+      - fzf
     state: latest
   become: true
   become_method: sudo

@@ -10,6 +10,7 @@
     - { repo: "https://github.com/lefayjey/linWinPwn", location: "/opt/linWinPwn" }
     - { repo: "https://github.com/W-GOULD/NessusNibbler", location: "/opt/NessusNibbler" }
     - { repo: "https://github.com/lgandx/PCredz", location: "/opt/PCredz"}
+    - { repo: "https://github.com/0dayCTF/reverse-shell-generator", location: "/opt/reverse-shell-generator"}
   become: true
   become_method: sudo
 
@@ -33,6 +34,8 @@
   loop:
     - { repo: "jpillora/chisel",  regex: "_linux_amd64.gz", location: "/opt/chisel" }
     - { repo: "jpillora/chisel",  regex: "_windows_amd64.gz", location: "/opt/chisel" }
+    - { repo: "trufflesecurity/trufflehog", regex: "_linux_amd64.tar.gz", location: "/opt/trufflehog" }
+    - { repo: "knqyf263/pet", regex: "_linux_amd64.deb", location: "/opt/pet" }
     #- { repo: "jpillora/chisel",  regex: "_darwin_amd64", location: "/opt/chisel", filename: "chisel_osx" }
     #- { repo: "carlospolop/PEASS-ng",  regex: "linpeas.sh", location: "/opt/peas" }
     #- { repo: "carlospolop/PEASS-ng",  regex: "winPEASx64.exe", location: "/opt/peas" }
