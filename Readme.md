@@ -27,3 +27,5 @@ Based on Ippsec's parrot build [script](https://github.com/IppSec/parrot-build) 
 - update the terminal role from gnome to xfce 
 - Update Nessus install Role to move the license key variable to main.yml like Burp
 - Add in kali system config so desktop display, tools bar, app locations etc. are all configured to my personal preferences.
+- Add some more pip install tools
+- Add an installer for the github tools.
