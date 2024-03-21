@@ -29,6 +29,7 @@ bindkey '^[[H' beginning-of-line                  # home
 bindkey '^[[F' end-of-line                        # end
 bindkey '^[[Z' undo                               # shift + tab undo last action
 
+
 # enable completion features
 autoload -Uz compinit
 compinit -d ~/.cache/zcompdump
@@ -257,7 +258,27 @@ if [ -f /etc/zsh_command_not_found ]; then
     . /etc/zsh_command_not_found
 fi
 
-PROMPT=$PROMPT'%F{yellow}%}[%D{%m/%f/%y} %D{%L:%M:%S}] '
+# Function to get IP address for either tun0 or the highest numbered eth interface
+get_ip_address() {
+    # Check if tun0 interface is active and get its IP address
+    if ip addr show tun0 &>/dev/null; then
+        ip addr show dev tun0 | awk '/inet / { sub(/\/.*$/, "", $2); print $2; exit }'
+    else
+        # Check if there are multiple eth adapters present
+        eth_interfaces=$(ip addr show | awk '/^2:/ && $2 ~ /^eth[0-9]*:/ { sub(/:/, "", $2); print $2 }')
+        if [ -n "$eth_interfaces" ]; then
+            # Select the interface with the highest number
+            highest_eth_interface=$(echo "$eth_interfaces" | sort -r | head -n1)
+            ip addr show dev "$highest_eth_interface" | awk '/inet / { sub(/\/.*$/, "", $2); print $2; exit }'
+        else
+            # If no tun0 and eth interfaces found, fallback to eth0
+            ip addr show dev eth0 | awk '/inet / { sub(/\/.*$/, "", $2); print $2; exit }'
+        fi
+    fi
+}
+
+
+PROMPT=$PROMPT'%F{yellow}%}[%D{%m/%f/%y} %D{%H:%M:%S} $(get_ip_address)] > ' 
 
 # Place into .zshrc
 
@@ -363,4 +384,37 @@ setopt INC_APPEND_HISTORY
 
 # force zsh to show the complete history
 alias history="history 0"
+
 bindkey '^v' clear-screen
+
+function pet-select() {
+  BUFFER=$(pet search --query "$LBUFFER")
+  CURSOR=$#BUFFER
+  zle redisplay
+}
+zle -N pet-select
+stty -ixon
+bindkey "^s" pet-select
+
+function fzf_with_command() {
+    fzf --exact --border --prompt="File> " --layout=reverse --preview 'highlight --max-size=10M --force=syntax -O ansi -l {}' < <(find . -type f -not -path '*/\.*')
+}
+zle -N fzf_with_command_widget fzf_with_command
+bindkey "^a" fzf_with_command_widget
+
+# Define a function to search command history with fzf
+fzf_search_history() {
+    local selected_command
+    selected_command=$(history | awk '{$1=""; print substr($0, 2)}' | fzf +s --exact --layout=reverse --tac --preview='echo {}' --preview-window=up:3:wrap)
+    LBUFFER="$selected_command"
+}
+
+# Define a function to call fzf_search_history and allow editing
+fzf_search_history_edit() {
+    fzf_search_history
+    zle reset-prompt
+}
+
+# Bind the function to Ctrl+R
+zle -N fzf_search_history_edit_widget fzf_search_history_edit
+bindkey '^r' fzf_search_history_edit_widget

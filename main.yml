@@ -15,7 +15,6 @@
     - role: "roles/customize-terminal"
     - role: "roles/customize-browser"
     - role: "roles/configure-logging"
-    - role: chaosmail.sublime-text
     - role: iesplin.burp_suite
     - role: gantsign.visual-studio-code
       users:

@@ -6,6 +6,7 @@
 
 - name: "Add Key binding to .zshrc"
   shell: echo 'function pet-select() {' >> ~/.zshrc && echo '  BUFFER=$(pet search --query "$LBUFFER")' >> ~/.zshrc && echo '  CURSOR=$#BUFFER' >> ~/.zshrc && echo '  zle redisplay' >> ~/.zshrc && echo '}' >> ~/.zshrc && echo 'zle -N pet-select' >> ~/.zshrc && echo 'stty -ixon' >> ~/.zshrc && echo 'bindkey "^s" pet-select' >> ~/.zshrc
+  shell: echo 'function fzf_with_command() { fzf --exact --border --prompt="File> " --layout=reverse --preview '\''highlight --max-size=10M --force=syntax -O ansi -l {}'\'' < <(find . -type f -not -path '\''*/\.*'\''); }; zle -N fzf_with_command_widget fzf_with_command; bindkey "^a" fzf_with_command_widget' >> ~/.zshrc
 
 - name: "Moving pet_config.toml file with secrets to .config/pet location"
   template:

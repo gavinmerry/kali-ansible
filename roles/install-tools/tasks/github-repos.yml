@@ -9,8 +9,9 @@
     - { repo: "https://github.com/insidetrust/statistically-likely-usernames.git", location: "/usr/share/wordlists/statistically-likely-usernames"}
     - { repo: "https://github.com/lefayjey/linWinPwn", location: "/opt/linWinPwn" }
     - { repo: "https://github.com/W-GOULD/NessusNibbler", location: "/opt/NessusNibbler" }
-    - { repo: "https://github.com/lgandx/PCredz", location: "/opt/PCredz"}
-    - { repo: "https://github.com/0dayCTF/reverse-shell-generator", location: "/opt/reverse-shell-generator"}
+    - { repo: "https://github.com/lgandx/PCredz", location: "/opt/PCredz" }
+    - { repo: "https://github.com/0dayCTF/reverse-shell-generator", location: "/opt/reverse-shell-generator" }
+    - { report: "https://github.com/t3l3machus/hoaxshell", location: "/opt/hoaxshell" }
   become: true
   become_method: sudo
 

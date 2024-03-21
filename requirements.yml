@@ -2,6 +2,3 @@
 - src: gantsign.oh-my-zsh
 #- src: chaosmail.sublime-text
 - src: iesplin.burp_suite
-- name: ansible-roles-sublime-text
-  src: trippyp/ansible-roles-sublime-text
-  version: master

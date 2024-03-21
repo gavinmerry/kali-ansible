@@ -2,7 +2,7 @@
   snippetfile = "/home/kali/.config/pet/snippet.toml"
   editor = "subl"
   column = 40
-  selectcmd = "fzf --ansi --layout=reverse --border --height=90% --pointer='*' --cycle --prompt='Snippets: '"
+  selectcmd = "fzf --ansi --exact --layout=reverse --border --height=90% --pointer='>' --cycle --prompt='Snippets> '"
   backend = "gist"
   sortby = ""
 
