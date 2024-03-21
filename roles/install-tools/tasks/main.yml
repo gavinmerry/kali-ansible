@@ -8,3 +8,4 @@
 - include_tasks: cargo-tools.yml
 - include_tasks: Build_tools.yml
 - include_tasks: install_nessus.yml
+- include_tasks: pet_install_config.yml

@@ -35,7 +35,7 @@
     - { repo: "jpillora/chisel",  regex: "_linux_amd64.gz", location: "/opt/chisel" }
     - { repo: "jpillora/chisel",  regex: "_windows_amd64.gz", location: "/opt/chisel" }
     - { repo: "trufflesecurity/trufflehog", regex: "_linux_amd64.tar.gz", location: "/opt/trufflehog" }
-    - { repo: "knqyf263/pet", regex: "_linux_amd64.deb", location: "/opt/pet" }
+    - { repo: "knqyf263/pet", regex: "_linux_amd64.deb", location: "/tmp/pet" }
     #- { repo: "jpillora/chisel",  regex: "_darwin_amd64", location: "/opt/chisel", filename: "chisel_osx" }
     #- { repo: "carlospolop/PEASS-ng",  regex: "linpeas.sh", location: "/opt/peas" }
     #- { repo: "carlospolop/PEASS-ng",  regex: "winPEASx64.exe", location: "/opt/peas" }

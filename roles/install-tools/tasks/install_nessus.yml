@@ -51,13 +51,13 @@
   register: license_info
   ignore_errors: true
 
-- name: "Read License key file"
-  set_fact:
-    license_key: "{{ lookup('file', '/mnt/hgfs/License_files/Nessus_license.txt')}}"
-  when: "'Updates are configured properly' not in license_info.stdout"
+#- name: "Read License key file"
+#  set_fact:
+#    license_key: "{{ nessus_license }}"
+#  when: "'Updates are configured properly' not in license_info.stdout"
 
 - name: "License Nessus"
   become: true
   become_method: sudo
-  shell: /opt/nessus/sbin/nessuscli fetch --register "{{ license_key }}"
+  shell: /opt/nessus/sbin/nessuscli fetch --register "{{ nessus_license }}"
   when: "'Updates are configured properly' not in license_info.stdout"

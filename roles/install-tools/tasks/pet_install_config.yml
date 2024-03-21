@@ -1,0 +1,19 @@
+---
+- name: "Install PET"
+  become: true
+  become_method: sudo
+  command: dpkg -i /tmp/pet/*_linux_amd64.deb
+
+- name: "Add Key binding to .zshrc"
+  shell: echo 'function pet-select() {' >> ~/.zshrc && echo '  BUFFER=$(pet search --query "$LBUFFER")' >> ~/.zshrc && echo '  CURSOR=$#BUFFER' >> ~/.zshrc && echo '  zle redisplay' >> ~/.zshrc && echo '}' >> ~/.zshrc && echo 'zle -N pet-select' >> ~/.zshrc && echo 'stty -ixon' >> ~/.zshrc && echo 'bindkey "^s" pet-select' >> ~/.zshrc
+
+- name: "Moving pet_config.toml file with secrets to .config/pet location"
+  template:
+    src: files/pet_config.toml
+    dest: /home/kali/.config/pet/config.toml
+  vars:
+    gist_token: "{{ gist_token }}"
+    gist_id: "{{ gist_id }}"
+
+- name: "Sync pet"
+  shell: pet sync

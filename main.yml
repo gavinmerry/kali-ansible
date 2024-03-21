@@ -2,10 +2,13 @@
 - name: "Customizing Kali"
   hosts: localhost
   connection: local
+  vars_files:
+    - /mnt/hgfs/License_files/secret_vars.yml
   vars:
     burpsuite_user: kali
     burpsuite_edition: pro
-    burpsuite_pro_license_key: "{{ lookup('file', '/mnt/hgfs/License_files/Burp_Suite_Professional_License.txt') }}"
+    burpsuite_pro_license_key: "{{ burp_license }}"
+
   roles:
     - role: "roles/install-tools"
     - role: "roles/configure-tmux"

@@ -8,8 +8,8 @@
 
 [Gist]
   file_name = "pet-snippet.toml"
-  access_token = "{gist_access_token}"
-  gist_id = "{gist_id}"
+  access_token = "{{ gist_token }}"
+  gist_id = "{{ gist_id }}"
   public = false
   auto_sync = true
 
