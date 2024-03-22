@@ -60,9 +60,6 @@ setopt hist_verify            # show command with history expansion to user befo
 # force zsh to show the complete history
 alias history="history 0"
 
-# Alias for ll command to use exa
-alias ll="eza -alh"
-
 # configure `time` format
 TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S\ncpu\t%P'
 
@@ -95,13 +92,36 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+# Function to get IP address for either tun0 or the highest numbered eth interface
+get_ip_address() {
+    # Check if tun0 interface is active and get its IP address
+    if ip addr show tun0 &>/dev/null; then
+        ip addr show dev tun0 | awk '/inet / { sub(/\/.*$/, "", $2); print $2; exit }'
+    else
+        # Check if there are multiple eth adapters present
+        eth_interfaces=$(ip addr show | awk '/^2:/ && $2 ~ /^eth[0-9]*:/ { sub(/:/, "", $2); print $2 }')
+        if [ -n "$eth_interfaces" ]; then
+            # Select the interface with the highest number
+            highest_eth_interface=$(echo "$eth_interfaces" | sort -r | head -n1)
+            ip addr show dev "$highest_eth_interface" | awk '/inet / { sub(/\/.*$/, "", $2); print $2; exit }'
+        else
+            # If no tun0 and eth interfaces found, fallback to eth0
+            ip addr show dev eth0 | awk '/inet / { sub(/\/.*$/, "", $2); print $2; exit }'
+        fi
+    fi
+}
+
+
+#PROMPT=$PROMPT'%F{yellow}%}[%D{%m/%f/%y} %D{%H:%M:%S} $(get_ip_address)] > ' 
+
 configure_prompt() {
-    prompt_symbol=㉿
+    #prompt_symbol=㉿
+    prompt_symbol=🌐
     # Skull emoji for root terminal
     #[ "$EUID" -eq 0 ] && prompt_symbol=💀
     case "$PROMPT_ALTERNATIVE" in
         twoline)
-            PROMPT=$'%F{%(#.blue.green)}┌──${debian_chroot:+($debian_chroot)─}${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))─}(%B%F{%(#.red.blue)}%n'$prompt_symbol$'%m%b%F{%(#.blue.green)})-[%B%F{reset}%(6~.%-1~/…/%4~.%5~)%b%F{%(#.blue.green)}]\n└─%B%(#.%F{red}#.%F{blue}$)%b%F{reset} '
+            PROMPT=$'%F{%(#.blue.green)}┌──${debian_chroot:+($debian_chroot)─}${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))─}(%B%F{%(#.red.blue)}%n'$prompt_symbol$'%m%b%F{%(#.blue.green)})-[%F{yellow}%}%D{%m/%f/%y} %D{%H:%M:%S} $(get_ip_address)%F{%(#.blue.green)}][%B%F{reset}%(6~.%-1~/…/%4~.%5~)%b%F{%(#.blue.green)}]\n└─[👾]%B%(#.%F{red}#.%F{blue}$)%b%F{reset} '
             # Right-side prompt with exit codes and background processes
             #RPROMPT=$'%(?.. %? %F{red}%B⨯%b%F{reset})%(1j. %j %F{yellow}%B⚙%b%F{reset}.)'
             ;;
@@ -261,27 +281,7 @@ if [ -f /etc/zsh_command_not_found ]; then
     . /etc/zsh_command_not_found
 fi
 
-# Function to get IP address for either tun0 or the highest numbered eth interface
-get_ip_address() {
-    # Check if tun0 interface is active and get its IP address
-    if ip addr show tun0 &>/dev/null; then
-        ip addr show dev tun0 | awk '/inet / { sub(/\/.*$/, "", $2); print $2; exit }'
-    else
-        # Check if there are multiple eth adapters present
-        eth_interfaces=$(ip addr show | awk '/^2:/ && $2 ~ /^eth[0-9]*:/ { sub(/:/, "", $2); print $2 }')
-        if [ -n "$eth_interfaces" ]; then
-            # Select the interface with the highest number
-            highest_eth_interface=$(echo "$eth_interfaces" | sort -r | head -n1)
-            ip addr show dev "$highest_eth_interface" | awk '/inet / { sub(/\/.*$/, "", $2); print $2; exit }'
-        else
-            # If no tun0 and eth interfaces found, fallback to eth0
-            ip addr show dev eth0 | awk '/inet / { sub(/\/.*$/, "", $2); print $2; exit }'
-        fi
-    fi
-}
-
-
-PROMPT=$PROMPT'%F{yellow}%}[%D{%m/%f/%y} %D{%H:%M:%S} $(get_ip_address)] > ' 
+#####
 
 # Place into .zshrc
 
@@ -423,3 +423,4 @@ fzf_search_history_edit() {
 zle -N fzf_search_history_edit_widget fzf_search_history_edit
 bindkey '^r' fzf_search_history_edit_widget
 eval "$(zoxide init --cmd cd zsh)"
+
