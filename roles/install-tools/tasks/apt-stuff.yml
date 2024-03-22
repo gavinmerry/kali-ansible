@@ -86,6 +86,11 @@
       - fzf
       - highlight
       - sublime-text
+      - eza
+      - rg
+      - btop
+      - zoxide
+      - entr
     state: latest
   become: true
   become_method: sudo

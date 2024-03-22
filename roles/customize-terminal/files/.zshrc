@@ -60,6 +60,9 @@ setopt hist_verify            # show command with history expansion to user befo
 # force zsh to show the complete history
 alias history="history 0"
 
+# Alias for ll command to use exa
+alias ll="eza -alh"
+
 # configure `time` format
 TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S\ncpu\t%P'
 
@@ -384,6 +387,7 @@ setopt INC_APPEND_HISTORY
 
 # force zsh to show the complete history
 alias history="history 0"
+alias ll="eza -alh"
 
 bindkey '^v' clear-screen
 
@@ -418,3 +422,4 @@ fzf_search_history_edit() {
 # Bind the function to Ctrl+R
 zle -N fzf_search_history_edit_widget fzf_search_history_edit
 bindkey '^r' fzf_search_history_edit_widget
+eval "$(zoxide init --cmd cd zsh)"
