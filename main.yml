@@ -25,6 +25,7 @@
             - DEVSENSE.phptools-vscode
             - snyk-security.snyk-vulnerability-scanner
             - esbenp.prettier-vscode
+            - GitHub.copilot
             - ms-vscode.powershell
             - ms-vscode.cpptools
               # - role: gantsign.oh-my-zsh
