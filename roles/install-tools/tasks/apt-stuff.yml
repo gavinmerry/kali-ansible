@@ -91,6 +91,8 @@
       - btop
       - zoxide
       - entr
+      - strace
+      - ltrace
     state: latest
   become: true
   become_method: sudo

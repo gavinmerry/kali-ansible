@@ -1,0 +1,15 @@
+---
+- name: "Create theme directory"
+  become: true
+  become_method: sudo
+  shell: "mkdir -p /usr/share/ghidra/Themes"
+
+- name: "Copy theme files to Ghidra directory"
+  become: true
+  become_method: sudo
+  copy:
+    src: "{{ item }}"
+    dest: "/usr/share/ghidra/Themes"
+    remote_src: yes
+  with_fileglob:
+    - "{{ role_path }}/files/ghidra_themes/*"
