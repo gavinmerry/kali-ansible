@@ -12,6 +12,7 @@
     - { repo: "https://github.com/lgandx/PCredz", location: "/opt/PCredz" }
     - { repo: "https://github.com/0dayCTF/reverse-shell-generator", location: "/opt/reverse-shell-generator" }
     - { report: "https://github.com/t3l3machus/hoaxshell", location: "/opt/hoaxshell" }
+    - { repo: "https://github.com/radareorg/radare2", location: "/home/kali/Downloads/radare2" }
   become: true
   become_method: sudo
 
