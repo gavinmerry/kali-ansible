@@ -7,6 +7,7 @@
     - { repo: "https://github.com/Flangvik/SharpCollection", location: "/opt/SharpCollection" }
     #- { repo: "https://github.com/danielmiessler/SecLists", location: "/usr/share/wordlists/SecLists" }
     - { repo: "https://github.com/insidetrust/statistically-likely-usernames.git", location: "/usr/share/wordlists/statistically-likely-usernames"}
+    - { repo: "https://github.com/bitquark/dnspop.git", location: "/usr/share/wordlists/dnspop" }
     - { repo: "https://github.com/lefayjey/linWinPwn", location: "/opt/linWinPwn" }
     - { repo: "https://github.com/W-GOULD/NessusNibbler", location: "/opt/NessusNibbler" }
     - { repo: "https://github.com/lgandx/PCredz", location: "/opt/PCredz" }

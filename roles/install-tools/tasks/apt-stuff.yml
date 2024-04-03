@@ -93,6 +93,7 @@
       - entr
       - strace
       - ltrace
+      - musl-tools
     state: latest
   become: true
   become_method: sudo
