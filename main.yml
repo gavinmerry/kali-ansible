@@ -18,9 +18,9 @@
     - role: iesplin.burp_suite
     - role: gantsign.visual-studio-code
     - role: chaosmail.sublime-text
-        sublime_version: 3
-        sublime_package_control: true
-        sublime_packages:
+      sublime_version: 3
+      sublime_package_control: true
+      sublime_packages:
         - 'https://github.com/skuroda/Sublime-AdvancedNewFile.git'
         - 'https://github.com/weslly/ColorPicker.git'
         - 'https://github.com/revolunet/sublimetext-markdown-preview'
