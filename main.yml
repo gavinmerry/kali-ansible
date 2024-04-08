@@ -39,3 +39,7 @@
               #         update_frequency: 3
               #         write_zshrc: false
          
+- name: "Re-encrypt secret_vars.yml"
+  command: ansible-vault encrypt secret_vars.yml --vault-password-file /mnt/hgfs/License_files/secret_vars.yml
+  delegate_to: localhost
+  when: ansible_run_tags is defined and "encrypt_vars" in ansible_run_tags
