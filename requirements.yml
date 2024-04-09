@@ -1,7 +1,7 @@
 - src: gantsign.visual-studio-code
 - src: gantsign.oh-my-zsh
 - src: chaosmail.sublime-text
-  sublime_version: 3
+  sublime_version: 4
   sublime_package_control: true
   sublime_packages:
     - 'https://github.com/skuroda/Sublime-AdvancedNewFile.git'
