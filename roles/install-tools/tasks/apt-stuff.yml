@@ -94,6 +94,7 @@
       - strace
       - ltrace
       - musl-tools
+      - remmina
     state: latest
   become: true
   become_method: sudo
