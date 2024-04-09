@@ -4,10 +4,10 @@
   connection: local
   vars_files:
     - /mnt/hgfs/License_files/secret_vars.yml
-  vars:
-    burpsuite_user: kali
-    burpsuite_edition: pro
-    burpsuite_pro_license_key: "{{ burp_license }}"
+  #vars:
+  #  burpsuite_user: kali
+  #  burpsuite_edition: pro
+  #  burpsuite_pro_license_key: "{{ burp_license }}"
 
 # Removing burp suite installation for now due to licensing and activation issues.
 
