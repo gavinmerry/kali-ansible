@@ -1,0 +1,5 @@
+---
+- name: "Unzip xfce4 config files"
+  become: true
+  become_method: sudo
+  shell: "unzip -o {{ role_path }}/files/xfce4_config.zip -d /home/kali/.config/xfce4/"

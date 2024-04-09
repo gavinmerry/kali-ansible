@@ -1,3 +1,3 @@
 ---
 - include_tasks: ghidra_theme.yml
-
+- include_tasks: xfce4_config.yml

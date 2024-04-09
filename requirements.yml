@@ -1,4 +1,4 @@
 - src: gantsign.visual-studio-code
 - src: gantsign.oh-my-zsh
 - src: chaosmail.sublime-text
-#- src: iesplin.burp_suite
+- src: iesplin.burp_suite

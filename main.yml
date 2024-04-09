@@ -4,12 +4,6 @@
   connection: local
   vars_files:
     - /mnt/hgfs/License_files/secret_vars.yml
-  #vars:
-  #  burpsuite_user: kali
-  #  burpsuite_edition: pro
-  #  burpsuite_pro_license_key: "{{ burp_license }}"
-
-# Removing burp suite installation for now due to licensing and activation issues.
 
   roles:
     - role: "roles/install-tools"
@@ -17,7 +11,7 @@
     - role: "roles/customize-terminal"
     - role: "roles/customize-browser"
     - role: "roles/configure-logging"
-    #- role: iesplin.burp_suite
+    - role: iesplin.burp_suite
     - role: gantsign.visual-studio-code
     - role: chaosmail.sublime-text
       sublime_version: 3
@@ -44,14 +38,5 @@
             - GitHub.copilot
             - ms-vscode.powershell
             - ms-vscode.cpptools
-              # - role: gantsign.oh-my-zsh
-              #   users: 
-              #     - username: "{{ ansible_user_id }}"
-              #       oh_my_zsh:
-              #         theme: gallois
-              #         plugins:
-              #           - git
-              #         update_mode: reminder
-              #         update_frequency: 3
-              #         write_zshrc: false
+    - role: "roles/customise-kali"
          
