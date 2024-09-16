@@ -36,7 +36,7 @@
     mode: '0644'
   
 - name: "Create blank snippet file"
-  command: touch /home/kali/.config/pet/snippets.toml
+  command: touch /home/kali/.config/pet/snippet.toml
 
 - name: "Sync pet"
   shell: pet sync
