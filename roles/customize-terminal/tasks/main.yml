@@ -10,6 +10,11 @@
     src: "{{ role_path }}/files/.vimrc"
     dest: "{{ ansible_env.HOME }}"
 
+- name: "Copying terminator Config"
+  copy:
+    src: "{{ role_path }}/files/terminator_config"
+    dest: "{{ ansible_env.HOME }}/.config/terminator/config"
+
 #- include_tasks: gnome-shell.yml
 
 

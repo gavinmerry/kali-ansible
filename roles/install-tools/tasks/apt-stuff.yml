@@ -95,6 +95,8 @@
       - ltrace
       - musl-tools
       - remmina
+      - obsidian
+      - sprayhound
     state: latest
   become: true
   become_method: sudo
