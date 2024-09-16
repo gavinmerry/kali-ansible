@@ -25,4 +25,3 @@
             - ms-vscode.powershell
             - ms-vscode.cpptools
     - role: "roles/customise-kali"
-         

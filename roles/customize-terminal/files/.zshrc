@@ -99,7 +99,7 @@ get_ip_address() {
         ip addr show dev tun0 | awk '/inet / { sub(/\/.*$/, "", $2); print $2; exit }'
     else
         # Check if there are multiple eth adapters present
-        eth_interfaces=$(ip addr show | awk '/^2:/ && $2 ~ /^eth[0-9]*:/ { sub(/:/, "", $2); print $2 }')
+        eth_interfaces=$(ip link show | grep -E '^[0-9]+: eth' | awk -F: '{print $2}' | tr -d ' ')
         if [ -n "$eth_interfaces" ]; then
             # Select the interface with the highest number
             highest_eth_interface=$(echo "$eth_interfaces" | sort -r | head -n1)
