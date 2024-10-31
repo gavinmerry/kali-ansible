@@ -14,4 +14,5 @@
     - { name: 'mitm6', url: 'git+https://github.com/dirkjanm/mitm6.git' }
     - { name: 'coercer', url: 'git+https://github.com/p0dalirius/Coercer.git'}
     - { name: 'git-dumper', url: 'git+https://github.com/arthaud/git-dumper.git'}
+    - { name: 'powerview.py', url: 'git+https://github.com/aniqfakhrul/powerview.py.git'}
   ignore_errors: true
