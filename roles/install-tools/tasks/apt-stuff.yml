@@ -98,7 +98,6 @@
       - obsidian
       - sprayhound
       - cmatrix
-      - libkrb5-dev
     state: latest
   become: true
   become_method: sudo
